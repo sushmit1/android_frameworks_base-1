@@ -86,5 +86,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.OMNI_ADVANCED_REBOOT,
         Settings.System.KEYGAURD_MEDIA_ART,
+        Settings.System.LOCKSCREEN_BATTERY_INFO,
     };
 }
