@@ -1465,7 +1465,7 @@ public final class ActivityThread extends ClientTransactionHandler
             if (dumpUnreachable) {
                 boolean showContents = ((mBoundApplication != null)
                     && ((mBoundApplication.appInfo.flags&ApplicationInfo.FLAG_DEBUGGABLE) != 0))
-                    || android.os.Build.IS_ENG;
+                    || android.os.Build.IS_DEBUGGABLE;
                 pw.println(" ");
                 pw.println(" Unreachable memory");
                 pw.print(Debug.getUnreachableMemory(100, showContents));
@@ -1591,7 +1591,7 @@ public final class ActivityThread extends ClientTransactionHandler
             if (dumpUnreachable) {
                 int flags = mBoundApplication == null ? 0 : mBoundApplication.appInfo.flags;
                 boolean showContents = (flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0
-                        || android.os.Build.IS_ENG;
+                        || android.os.Build.IS_DEBUGGABLE;
                 proto.write(MemInfoDumpProto.AppData.UNREACHABLE_MEMORY,
                         Debug.getUnreachableMemory(100, showContents));
             }
@@ -4903,7 +4903,7 @@ public final class ActivityThread extends ClientTransactionHandler
         }
 
         if (r.isTopResumedActivity == onTop) {
-            if (!Build.IS_ENG) {
+            if (!Build.IS_DEBUGGABLE) {
                 Slog.w(TAG, "Activity top position already set to onTop=" + onTop);
                 return;
             }
@@ -6595,17 +6595,17 @@ public final class ActivityThread extends ClientTransactionHandler
         boolean isAppDebuggable = (data.appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         boolean isAppProfileable = isAppDebuggable || data.appInfo.isProfileable();
         Trace.setAppTracingAllowed(isAppProfileable);
-        if ((isAppProfileable || Build.IS_ENG) && data.enableBinderTracking) {
+        if ((isAppProfileable || Build.IS_DEBUGGABLE) && data.enableBinderTracking) {
             Binder.enableTracing();
         }
 
         // Initialize heap profiling.
-        if (isAppProfileable || Build.IS_ENG) {
+        if (isAppProfileable || Build.IS_DEBUGGABLE) {
             nInitZygoteChildHeapProfiling();
         }
 
         // Allow renderer debugging features if we're debuggable.
-        HardwareRenderer.setDebuggingEnabled(isAppDebuggable || Build.IS_ENG);
+        HardwareRenderer.setDebuggingEnabled(isAppDebuggable || Build.IS_DEBUGGABLE);
         HardwareRenderer.setPackageName(data.appInfo.packageName);
 
         // Pass the current context to HardwareRenderer
@@ -7564,7 +7564,7 @@ public final class ActivityThread extends ClientTransactionHandler
         ViewRootImpl.ConfigChangedCallback configChangedCallback = (Configuration globalConfig) -> {
             synchronized (mResourcesManager) {
                 // TODO (b/135719017): Temporary log for debugging IME service.
-                if (Build.IS_ENG && mHasImeComponent) {
+                if (Build.IS_DEBUGGABLE && mHasImeComponent) {
                     Log.d(TAG, "ViewRootImpl.ConfigChangedCallback for IME, "
                             + "config=" + globalConfig);
                 }

@@ -1512,7 +1512,7 @@ public final class UiAutomation {
                         mConnectionId = connectionId;
                         mLock.notifyAll();
                     }
-                    if (Build.IS_ENG) {
+                    if (Build.IS_DEBUGGABLE) {
                         Log.v(LOG_TAG, "Init " + UiAutomation.this);
                     }
                 }

@@ -42,7 +42,7 @@ public class MultiClientInputMethodManagerServiceTest {
     @Before
     public void setUp() {
         // MultiClientInputMethodManagerService is only testable if build is debuggable.
-        assumeTrue(Build.IS_ENG);
+        assumeTrue(Build.IS_DEBUGGABLE);
     }
 
     @Test

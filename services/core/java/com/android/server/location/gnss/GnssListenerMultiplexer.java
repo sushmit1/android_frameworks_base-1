@@ -328,7 +328,7 @@ public abstract class GnssListenerMultiplexer<TRequest, TListener extends IInter
     // override this implementation.
     protected TMergedRegistration mergeRegistrations(
             Collection<GnssListenerRegistration> gnssListenerRegistrations) {
-        if (Build.IS_ENG) {
+        if (Build.IS_DEBUGGABLE) {
             for (GnssListenerRegistration registration : gnssListenerRegistrations) {
                 Preconditions.checkState(registration.getRequest() == null);
             }

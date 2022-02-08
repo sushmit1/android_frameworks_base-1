@@ -30,8 +30,8 @@ public class BuildInfo {
     public BuildInfo() {
     }
 
-    /** @see Build.IS_ENG */
+    /** @see Build#IS_DEBUGGABLE */
     public boolean isDebuggable() {
-        return Build.IS_ENG;
+        return Build.IS_DEBUGGABLE;
     }
 }

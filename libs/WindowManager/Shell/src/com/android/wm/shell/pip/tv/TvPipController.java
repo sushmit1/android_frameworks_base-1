@@ -57,7 +57,7 @@ import java.lang.annotation.RetentionPolicy;
 public class TvPipController implements PipTransitionController.PipTransitionCallback,
         TvPipMenuController.Delegate, TvPipNotificationController.Delegate {
     private static final String TAG = "TvPipController";
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
 
     private static final int NONEXISTENT_TASK_ID = -1;
 
